@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="These days I read the book Machine Learning in Action ,I’d like to share it with you.  MainImport Data1234567from numpy import *import operator    def createDataSet():        group = array([[1.0,1.1],">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MachineLearninginAction(1):KNN">
-<meta property="og:url" content="http://chenyaolu.github.io/2017/12/10/First/index.html">
+<meta name="description" content="A junior from Tongji University,majoring in IE.I&apos;m interested in Algorithm and Data Science.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Machine Learning Study(2)">
+<meta property="og:url" content="http://chenyaolu.github.io/study/index-1.html">
 <meta property="og:site_name" content="ChenyaoLu&#39;s Blog">
-<meta property="og:description" content="These days I read the book Machine Learning in Action ,I’d like to share it with you.  MainImport Data1234567from numpy import *import operator    def createDataSet():        group = array([[1.0,1.1],">
+<meta property="og:description" content="A junior from Tongji University,majoring in IE.I&apos;m interested in Algorithm and Data Science.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2017-12-10T22:11:24.266Z">
+<meta property="og:updated_time" content="2017-12-12T18:45:40.004Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MachineLearninginAction(1):KNN">
-<meta name="twitter:description" content="These days I read the book Machine Learning in Action ,I’d like to share it with you.  MainImport Data1234567from numpy import *import operator    def createDataSet():        group = array([[1.0,1.1],">
+<meta name="twitter:title" content="Machine Learning Study(2)">
+<meta name="twitter:description" content="A junior from Tongji University,majoring in IE.I&apos;m interested in Algorithm and Data Science.">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://chenyaolu.github.io/2017/12/10/First/"/>
+  <link rel="canonical" href="http://chenyaolu.github.io/study/index-1.html"/>
 
 
 
 
 
-  <title>MachineLearninginAction(1):KNN | ChenyaoLu's Blog</title>
+  <title>Machine Learning Study(2) | ChenyaoLu's Blog</title>
   
 
 
@@ -205,7 +205,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Study
+            study
           </a>
         </li>
       
@@ -216,16 +216,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
-            
-            Schedule
           </a>
         </li>
       
@@ -250,140 +240,33 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenyaolu.github.io/2017/12/10/First/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chenyao Lu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ChenyaoLu's Blog">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">MachineLearninginAction(1):KNN</h1>
-        
+	<h1 class="post-title" itemprop="name headline">Machine Learning Study(2)</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-10T20:06:50+08:00">
-                2017-12-10
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <p>These days I read the book <em>Machine Learning in Action</em> ,I’d like to share it with you. </p>
-<h2 id="Main"><a href="#Main" class="headerlink" title="Main"></a>Main</h2><h3 id="Import-Data"><a href="#Import-Data" class="headerlink" title="Import Data"></a>Import Data</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from numpy import *</span><br><span class="line">import operator    </span><br><span class="line">def createDataSet():    </span><br><span class="line">    group = array([[1.0,1.1],[1.0,1.0],[0,0],[0,0.1]]) </span><br><span class="line">    labels= [<span class="string">"A"</span>,<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"B"</span>]</span><br><span class="line">    <span class="built_in">return</span> group,labels</span><br></pre></td></tr></table></figure>
-<h3 id="KNN-algorithm"><a href="#KNN-algorithm" class="headerlink" title="KNN algorithm"></a>KNN algorithm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">def classify0(inX,dataSet,labels,k):     </span><br><span class="line">    dataSetSize = dataSet.shape[0]  </span><br><span class="line">    diffMat = tile(inX,(dataSetSize,1))-dataSet  </span><br><span class="line">    sqDiffMat = diffMat**2</span><br><span class="line">    sqDistances = sqDiffMat.sum(axis=1)  </span><br><span class="line">    distances = sqDistances**0.5</span><br><span class="line">    sortedDistIndicies = distances.argsort()   </span><br><span class="line">    classCount=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">        voteIlabel  = labels[sortedDistIndicies[i]]</span><br><span class="line">        classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1   </span><br><span class="line">    sortedClassCount = sorted(classCount.items(),</span><br><span class="line">                             key = operator.itemgetter(1),reverse = True)  </span><br><span class="line">    <span class="built_in">return</span> sortedClassCount[0][0]</span><br></pre></td></tr></table></figure>
-
+      <div class="post-body">
+        
+        
+          
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/11/Aboutme/" rel="prev" title="About me">
-                About me <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -414,17 +297,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -443,7 +317,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -473,15 +347,15 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://www.zhihu.com/people/lucy-69-31/activities" target="_blank" title="zhihu">
+                  <a href="https://www.zhihu.com/people/lucy-69-31/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                      <i class="fa fa-fw fa-globe"></i>Zhihu</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://weibo.com/chenyaolu" target="_blank" title="weibo">
+                  <a href="https://weibo.com/chenyaolu" target="_blank" title="Weibo">
                     
-                      <i class="fa fa-fw fa-globe"></i>weibo</a>
+                      <i class="fa fa-fw fa-globe"></i>Weibo</a>
                 </span>
               
             
@@ -498,22 +372,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Main"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Main" class="headerlink" title="Main"></a>Main</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Import-Data"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#Import-Data" class="headerlink" title="Import Data"></a>Import Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KNN-algorithm"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#KNN-algorithm" class="headerlink" title="KNN algorithm"></a>KNN algorithm</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
