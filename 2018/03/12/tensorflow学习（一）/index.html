@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="ChenyaoLu&#39;s Blog">
 <meta property="og:description" content="入门在anaconda中配置环境，用prompt先打开tensorflow环境（activate tensorflow），再打开jupyter notebook 123456import tensorflow as tf #导入TensorFlowa = tf.constant([1.1,2.2],name=&quot;a&quot;) #constant表示常量，给它取个名字叫“a”b = tf.constant(">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-03-13T15:56:41.063Z">
+<meta property="og:updated_time" content="2018-03-13T16:01:31.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow 学习（一）">
 <meta name="twitter:description" content="入门在anaconda中配置环境，用prompt先打开tensorflow环境（activate tensorflow），再打开jupyter notebook 123456import tensorflow as tf #导入TensorFlowa = tf.constant([1.1,2.2],name=&quot;a&quot;) #constant表示常量，给它取个名字叫“a”b = tf.constant(">
@@ -384,7 +384,11 @@
 <p>或者用上下文管理器with来管理这个会话：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run()</span><br></pre></td></tr></table></figure>
 <p>不需要调用Session.close()函数来关闭对话，当上下文退出时会话关闭和资源释放也就完成了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过设定默认会话计算张量的取值</span></span><br><span class="line">sess = tf.Session()</span><br><span class="line"><span class="keyword">with</span> sess.as_default():</span><br><span class="line">    print(result.eval())</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">sess = tf.InteractiveSession()</span><br><span class="line">print(result.eval())</span><br><span class="line">sess.close()</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">+ 通过ConfigProto配置会话（？）</span><br><span class="line"> </span><br><span class="line">```python</span><br><span class="line">config = tf.ConfigProto(allow_soft_placement = <span class="keyword">True</span>,log_device_placement = <span class="keyword">True</span>)</span><br><span class="line">sess1 = tf.InteractiveSession(config=config)</span><br><span class="line">sess2 = tf.Session(config=config)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过设定默认会话计算张量的取值</span></span><br><span class="line">sess = tf.Session()</span><br><span class="line"><span class="keyword">with</span> sess.as_default():</span><br><span class="line">    print(result.eval())</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">sess = tf.InteractiveSession()</span><br><span class="line">print(result.eval())</span><br><span class="line">sess.close()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过ConfigProto配置会话（？）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">config = tf.ConfigProto(allow_soft_placement = <span class="keyword">True</span>,log_device_placement = <span class="keyword">True</span>)</span><br><span class="line">sess1 = tf.InteractiveSession(config=config)</span><br><span class="line">sess2 = tf.Session(config=config)</span><br></pre></td></tr></table></figure>
 <h2 id="tensorflow实现神经网络"><a href="#tensorflow实现神经网络" class="headerlink" title="tensorflow实现神经网络"></a>tensorflow实现神经网络</h2><p><a href="http://playground.tensorflow.org" target="_blank" rel="noopener">http://playground.tensorflow.org</a><br>矩阵表示：数量阵 乘以 权重阵</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.matmul(a,b) <span class="comment">#a矩阵乘b矩阵</span></span><br></pre></td></tr></table></figure>
 <h3 id="神经网络参数和TensorFlow变量"><a href="#神经网络参数和TensorFlow变量" class="headerlink" title="神经网络参数和TensorFlow变量"></a>神经网络参数和TensorFlow变量</h3><ul>
@@ -576,7 +580,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
