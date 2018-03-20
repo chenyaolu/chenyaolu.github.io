@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="translation," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="chapter1  绪论1.1 调度的作用1.2 调度在组织中的地位1.3 本书结构框架 1.1 调度的作用调度就是用来处理稀缺资源的分配问题，这是一个以多目标最优化为目的的决策过程。资源和任务在组织中有很多形式，资源可以是工厂里的一台机器，机场里的一段跑道，建筑工地上的一帮工人，计算环境中的处理单元等。任务可以是生产过程中的经营，机场的起飞和降落，施工项目阶段，计算机程序执行等。每个任务可能有一">
+<meta name="keywords" content="translation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译：Scheduling:Theory,Algorithms,and Systems">
+<meta property="og:url" content="http://chenyaolu.github.io/2018/03/20/scheduling01/index.html">
+<meta property="og:site_name" content="ChenyaoLu&#39;s Blog">
+<meta property="og:description" content="chapter1  绪论1.1 调度的作用1.2 调度在组织中的地位1.3 本书结构框架 1.1 调度的作用调度就是用来处理稀缺资源的分配问题，这是一个以多目标最优化为目的的决策过程。资源和任务在组织中有很多形式，资源可以是工厂里的一台机器，机场里的一段跑道，建筑工地上的一帮工人，计算环境中的处理单元等。任务可以是生产过程中的经营，机场的起飞和降落，施工项目阶段，计算机程序执行等。每个任务可能有一">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-20T16:04:58.657Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译：Scheduling:Theory,Algorithms,and Systems">
+<meta name="twitter:description" content="chapter1  绪论1.1 调度的作用1.2 调度在组织中的地位1.3 本书结构框架 1.1 调度的作用调度就是用来处理稀缺资源的分配问题，这是一个以多目标最优化为目的的决策过程。资源和任务在组织中有很多形式，资源可以是工厂里的一台机器，机场里的一段跑道，建筑工地上的一帮工人，计算环境中的处理单元等。任务可以是生产过程中的经营，机场的起飞和降落，施工项目阶段，计算机程序执行等。每个任务可能有一">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chenyaolu.github.io/2018/03/20/scheduling01/"/>
+
+
+
+
+
+  <title>翻译：Scheduling:Theory,Algorithms,and Systems | ChenyaoLu's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ChenyaoLu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenyaolu@outlook.com</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-study">
+          <a href="/categories/study" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Study
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-project">
+          <a href="/categories/project" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Project
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenyaolu.github.io/2018/03/20/scheduling01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenyao Lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChenyaoLu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">翻译：Scheduling:Theory,Algorithms,and Systems</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T23:50:34+08:00">
+                2018-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/study/" itemprop="url" rel="index">
+                    <span itemprop="name">study</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="chapter1-绪论"><a href="#chapter1-绪论" class="headerlink" title="chapter1  绪论"></a>chapter1  绪论</h2><p>1.1 调度的作用<br>1.2 调度在组织中的地位<br>1.3 本书结构框架</p>
+<h3 id="1-1-调度的作用"><a href="#1-1-调度的作用" class="headerlink" title="1.1 调度的作用"></a>1.1 调度的作用</h3><p>调度就是用来处理稀缺资源的分配问题，这是一个以多目标最优化为目的的决策过程。资源和任务在组织中有很多形式，资源可以是工厂里的一台机器，机场里的一段跑道，建筑工地上的一帮工人，计算环境中的处理单元等。任务可以是生产过程中的经营，机场的起飞和降落，施工项目阶段，计算机程序执行等。每个任务可能有一个明确的优先级，一个最早允许开始时间和一个截止日期。目标也可以有多种形式，它可以是任务完成时间的最小化，可以是在规定时间内完成任务数的最大化。</p>
+<p>调度作为一种决策过程在许多生产制造系统和信息处理环境中扮演着重要角色。调度同样也应用于运输，分配和其他服务业。以下三个例子介绍了调度在实际中的运用。</p>
+<h4 id="案例1-1-1（一个纸袋加工厂）"><a href="#案例1-1-1（一个纸袋加工厂）" class="headerlink" title="案例1.1.1（一个纸袋加工厂）"></a>案例1.1.1（一个纸袋加工厂）</h4><p>想象一个生产水泥，木炭，狗粮等等的纸包装袋的工厂，一卷卷的纸是他们生产所用的原材料。生产过程包括三个阶段：印刷logo，边缘粘合和开口密封。在每个阶段都有一些生产机器，它们并不完全相同。每台机器在运行速度，印刷颜色，印刷尺寸上都有所不同。每个生产订单写明了产量，送货日期或者截止日期。生产时间与订单量的大小成比例关系。</p>
+<p>不能按期交付意味着商业信誉上的损失，更严重的后果取决于订单或客户的重要性和延迟的时间。所以调度系统的一个重要目的就是最小化这些损失。<br>当机器从生产一种类型的包装袋换到下一种类型的时候，会有一个机器准备的时间。准备时间的长短由两种类型的相似程度决定。所以说调度的另一个目的是最大化缩短用于准备的总时间。</p>
+<h4 id="案例1-1-2（登机口的分配）"><a href="#案例1-1-2（登机口的分配）" class="headerlink" title="案例1.1.2（登机口的分配）"></a>案例1.1.2（登机口的分配）</h4><p>想象一个大型机场航空终点站，这里有很多登机口，每天都有数以百计的飞机起飞或是降落。登机口各有不同，飞机也是。有的登机口很大适合于大型飞机，有的则不然。一些特定型号的飞机还需要被牵引到它们专用的登机口。</p>
+<p>飞机的起飞和降落都会按照之前排定的计划，但是这些安排会随着其他机场的突发状况而改变。当一架飞机在使用一个登机口的时候，已经到达的乘客需要下飞机，而下一个班次的乘客需要登机。在这里飞机起飞的时间可以看作是截止时间，用来检查航空公司的调度是否合理。但是如果在飞机起飞前就预料到它降落时会因为堵塞而无法降落，那么这架飞机就不会起飞。如果一架飞机不能按时起飞，机场会提前通知乘客在候机大厅等待。如果登机被推迟，这架飞机会在登机口停留一段时间，这样就防止了这个登机口被别的飞机占用。</p>
+<p>所以调度员会这样分配登机口以保证可行性和目标最优化。调度员会在合适的时间把合适的登机口分配给合适的飞机，调度的目标就是最小化机场员工的工作量和航班的延误。</p>
+<p>在这个案例之中，登机口时资源而飞机的处理和服务是任务，飞机的到达时间是任务开始时间，飞机的离开时间就是任务完成时间。</p>
+<h4 id="案例1-1-3（中央处理器的多任务调度）"><a href="#案例1-1-3（中央处理器的多任务调度）" class="headerlink" title="案例1.1.3（中央处理器的多任务调度）"></a>案例1.1.3（中央处理器的多任务调度）</h4><p>多线程计算机操作系统的一个重要功能就是能让CPU处理不同的程序。处理程序所需时间一般不能提前知道，但是时间的分配是可以提前知道的，包括运行程序所需资源和差异。此外，每个任务都有一个优先级（操作系统让用户指定优先级或按照任务权重划分）。在这个案例中，我们的目标是最小化处理时间。</p>
+<p>为了避免相对小的任务等待相对重要且耗时长的大任务很长时间，操作系统将任务划分成一些小片段，然后操作系统在相同的时间间隔内轮换执行它们。这样的话就能让CPU在每个任务上都花费一定的时间，如果一个任务较小，它能够被较快地完成。</p>
+<p>任务执行过程中的中断通常由于优先级。在操作系统中，优先级策略是最优策略的重要组成部分。</p>
+<hr>
+<p>现在我们还不是很清楚什么影响了对给定目标的调度。花费时间和精力找到一个好的调度方案真的有意义吗？通常地，调度方案的选择对系统工作的执行有很大影响。</p>
+<p>调度在技术上和在执行上都会面临一些困难。技术上的困难可能来自于最优化组合的形式和随机模型的建立；执行上的困难则完全与之不同，它可能来自于模型的精确度和输入的试验数据的可靠性。</p>
+<hr>
+<h3 id="1-2-调度在企业中的地位"><a href="#1-2-调度在企业中的地位" class="headerlink" title="1.2 调度在企业中的地位"></a>1.2 调度在企业中的地位</h3><p>无论是在生产系统中，还是在服务业中，调度都需要和其他职能部门相互影响，相互作用。这些相互作用十分依赖于各个系统部门，而且在不同的情境下很不相同。它们通常会波及到整个公司的信息系统。</p>
+<p>现代工厂或者是服务性组织通常会有一个大型而复杂的信息系统，里面集成了中央电脑和数据库。本地的电脑，工作站，数据输入终端都和中央电脑相连，这样有利于恢复数据或者是输入新的数据。有一种软件可以用来控制这样一个庞杂的信息系统，它便是ERP（企业资源计划）系统。许多软件公司致力于研究发展ERP软件，比如SAP，J.D.Edwards和PeopleSoft。这些 ERP系统在所有组织层面上对企业信息高速公路起到重要的作用，与组织的决策联系密切。</p>
+<p>调度的完成离不开ERP系统的支持。 ERP系统终端将调度的信息流下派到各部门，各部门反过来也向调度系统提供工作和机器状态的更新信息。</p>
+<p>当然，调度的完成也离不开决策主体之间的交流和讨论。</p>
+<h3 id="调度在制造业中"><a href="#调度在制造业中" class="headerlink" title="调度在制造业中"></a>调度在制造业中</h3><p>想象一下这些制造系统和它的调度。订单被分解成小的工作，并且都有明确的完成时间。这些小工作需要在机器上以一定的指令或者顺序去完成。如果机器正忙或者更高优先级的工作正在占用机器，当前工作的处理会被延误。更糟糕的是机器发生故障的话，这造成的影响需要考虑进调度安排中。所以，一个详细的调度方案能帮助提高效率和实现有效的控制。</p>
+<p>车间并不是唯一一个会对调度产生影响的环节。生产计划——关于整个组织中期或者长期的安排也会对调度有所影响。这个过程尽量做到最优化工厂产品和长期资源调度，基于存货等级、未来需求预测和资源需求。在更加充分的计划下做出的决策能直接影响调度过程。</p>
+<p>在制造业中，调度会受到其他工厂决策的影响。物资需求计划（MRP)是一种广泛应用的管理系统。当一个调度方案生效后，我们需要保证所有的原材料和资源都能在一定的时间内满足需求。作业的具体时间需要由生产计划、调度安排和MRP系统共同决定。</p>
+<p>MRP系统通常十分详尽。每一个作业的都有一个物料清单标明该产品所需物料。MRP系统为每各部分的生产和库存都进行了追踪。此外，它也将决定物料的购买时间。为了完成在这些功能，MRP系统运用了许多调度系统的常用技术。商业化的MRP软件在市场上十分常见，许多工厂都利用MRP软件协助它们的生产。如果一家工厂没有调度系统，那么MRP系统能帮助他们完成生产的规划。但是如果情况比较复杂的话，MRP系统也不能做到详细的规划。</p>
+<h3 id="调度在服务业中"><a href="#调度在服务业中" class="headerlink" title="调度在服务业中"></a>调度在服务业中</h3><p>描述清楚服务业中的调度并不是一件容易的事。服务业中的调度会面临许多困难，他可能要处理剩余资源的分配问题。服务业的调度更多依赖于信息系统，信息系统包括关于资源和（潜在的）顾客的相关数据库。调度系统常常与预测和收益管理模块有关。与制造业不同的是，服务业没有MRP。</p>
+<hr>
+<h3 id="1-3-本书结构框架"><a href="#1-3-本书结构框架" class="headerlink" title="1.3 本书结构框架"></a>1.3 本书结构框架</h3><p>这本书包含了调度的理论及其应用。理论部分包括作业的序列和调度。给你一堆需要在指定工作环境中完成的工作任务，这其中还包括一些约束条件和一个最优化评价标准，让你提出一个作业序列的安排。在调度中我们可能要面对一系列不确定因素，比如随机的作业完成时间，机械故障，紧急订货等等。</p>
+<p>在过去人们已经研究了许多调度问题，在本书中只选取了其中的一小部分加以说明，并基于前人研究的动机，方法论和重要应用。</p>
+<p>尽管本书提供的模型大都应用于生产制造领域，但是正如之前说的，调度在各行各业均有应用，这些模型和理论也可以被应用于其他行业。</p>
+<p>本书共分为三个部分。第一部分（第二章到第八章）是有关于确定性的调度模型。在这个部分中，我们假定作业数量有限，优化目标是一个或者多个，着重分析了简单的优先级和调度规则。第二章讨论了符号规则和后续章节中涉及的模型的介绍。第三章到第八章基于不同的机器生产环境：第三章和第四章是有关于单机生产环境，第五章有关于并行生产，第六章有关于一系列机器，第七章有关于复杂生产模型，第八章聚焦于没有限定的工作路径的自由顺序作业。</p>
+<p>第二部分（第九章到第十三章）有关于随机调度模型。在这些章节中，假设给定数量的工作需要被调度，但是有关于这些工作的数据并没有明确给出，包括工期开始时间、交付期等，只知道它们的分类。工作数据只有在调度安排完或者是实际执行后才能知道，一般来说优化的目的是使得目标对象最小，在此同样地着重分析了简单的优先级和调度规则。第九章讲了一些预备知识，第十章讲的是单机环境下的调度，第十一章也是基于单机环境，但是作业开始的时间是随机的。这章建立了随机模型和优先队列理论之间的关系。第十二章聚焦于并行生产，第十三章描述了复杂的同顺序作业，异顺序作业和自由顺序作业。</p>
+<blockquote>
+<p> <strong>补充：</strong></p>
+<ul>
+<li>low shop：如果每个作业需要在每个处理机上加工，而且每个作业的工序也相同，即在处理机上加工的顺序相同，则这种多类机的环境称为同顺序作业或流水作业。</li>
+<li>job shop：如果每个作业需要在每个处理机上加工，每个作业有自己的加工顺序，称之为异顺序作业。</li>
+<li>open shop：如果每个作业需要在每个处理机上加工，每个作业可按任意顺序加工，称之为自由顺序作业或开放作业。</li>
+</ul>
+</blockquote>
+<p>第三部分（第十四章到第二十章）讲述了调度理论的实践，算法是为解决现实问题而设计的。调度系统设计上的问题和一些例子在这里会介绍给大家。第十四章和第十五章介绍了许多在实际生产调度中被证明有效的通用的步骤，第十六章介绍了一些实际调度问题和它们对应的解决策略，第十七章聚焦于设计的基本问题，发展和调度系统的应用，第十八章介绍了更多设计中的高级概念和调度系统的应用，第十九章介绍了实际应用，第二十章介绍了调度的发展前景。</p>
+<p>附录部分ABC介绍了基本的方法：数学建模，动态规划，马尔科夫决策过程和复杂理论研究。附录D介绍了确定性调度模型的复杂性分类，附录E综述了随机调度问题，附录F列出了学术界和工业界研究发展过的调度系统。</p>
+<p>（然后介绍了本书的适用对象，使用方法，预备知识和参考文献，就不再翻译了）</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/translation/" rel="tag"># translation</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/12/tensorflow01/" rel="next" title="TensorFlow 学习（一）">
+                <i class="fa fa-chevron-left"></i> TensorFlow 学习（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Chenyao Lu" />
+            
+              <p class="site-author-name" itemprop="name">Chenyao Lu</p>
+              <p class="site-description motion-element" itemprop="description">A junior from Tongji University, majoring in IE. I'm interested in Algorithm and Data Science.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenyaolu" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenyaolu@outlook.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/lucy-69-31/activities" target="_blank" title="Zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/chenyaolu" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter1-绪论"><span class="nav-number">1.</span> <span class="nav-text"><a href="#chapter1-&#x7EEA;&#x8BBA;" class="headerlink" title="chapter1  &#x7EEA;&#x8BBA;"></a>chapter1  &#x7EEA;&#x8BBA;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-调度的作用"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-1-&#x8C03;&#x5EA6;&#x7684;&#x4F5C;&#x7528;" class="headerlink" title="1.1 &#x8C03;&#x5EA6;&#x7684;&#x4F5C;&#x7528;"></a>1.1 &#x8C03;&#x5EA6;&#x7684;&#x4F5C;&#x7528;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例1-1-1（一个纸袋加工厂）"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#&#x6848;&#x4F8B;1-1-1&#xFF08;&#x4E00;&#x4E2A;&#x7EB8;&#x888B;&#x52A0;&#x5DE5;&#x5382;&#xFF09;" class="headerlink" title="&#x6848;&#x4F8B;1.1.1&#xFF08;&#x4E00;&#x4E2A;&#x7EB8;&#x888B;&#x52A0;&#x5DE5;&#x5382;&#xFF09;"></a>&#x6848;&#x4F8B;1.1.1&#xFF08;&#x4E00;&#x4E2A;&#x7EB8;&#x888B;&#x52A0;&#x5DE5;&#x5382;&#xFF09;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例1-1-2（登机口的分配）"><span class="nav-number">1.1.2.</span> <span class="nav-text"><a href="#&#x6848;&#x4F8B;1-1-2&#xFF08;&#x767B;&#x673A;&#x53E3;&#x7684;&#x5206;&#x914D;&#xFF09;" class="headerlink" title="&#x6848;&#x4F8B;1.1.2&#xFF08;&#x767B;&#x673A;&#x53E3;&#x7684;&#x5206;&#x914D;&#xFF09;"></a>&#x6848;&#x4F8B;1.1.2&#xFF08;&#x767B;&#x673A;&#x53E3;&#x7684;&#x5206;&#x914D;&#xFF09;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例1-1-3（中央处理器的多任务调度）"><span class="nav-number">1.1.3.</span> <span class="nav-text"><a href="#&#x6848;&#x4F8B;1-1-3&#xFF08;&#x4E2D;&#x592E;&#x5904;&#x7406;&#x5668;&#x7684;&#x591A;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#xFF09;" class="headerlink" title="&#x6848;&#x4F8B;1.1.3&#xFF08;&#x4E2D;&#x592E;&#x5904;&#x7406;&#x5668;&#x7684;&#x591A;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#xFF09;"></a>&#x6848;&#x4F8B;1.1.3&#xFF08;&#x4E2D;&#x592E;&#x5904;&#x7406;&#x5668;&#x7684;&#x591A;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-调度在企业中的地位"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#1-2-&#x8C03;&#x5EA6;&#x5728;&#x4F01;&#x4E1A;&#x4E2D;&#x7684;&#x5730;&#x4F4D;" class="headerlink" title="1.2 &#x8C03;&#x5EA6;&#x5728;&#x4F01;&#x4E1A;&#x4E2D;&#x7684;&#x5730;&#x4F4D;"></a>1.2 &#x8C03;&#x5EA6;&#x5728;&#x4F01;&#x4E1A;&#x4E2D;&#x7684;&#x5730;&#x4F4D;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度在制造业中"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x8C03;&#x5EA6;&#x5728;&#x5236;&#x9020;&#x4E1A;&#x4E2D;" class="headerlink" title="&#x8C03;&#x5EA6;&#x5728;&#x5236;&#x9020;&#x4E1A;&#x4E2D;"></a>&#x8C03;&#x5EA6;&#x5728;&#x5236;&#x9020;&#x4E1A;&#x4E2D;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度在服务业中"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x8C03;&#x5EA6;&#x5728;&#x670D;&#x52A1;&#x4E1A;&#x4E2D;" class="headerlink" title="&#x8C03;&#x5EA6;&#x5728;&#x670D;&#x52A1;&#x4E1A;&#x4E2D;"></a>&#x8C03;&#x5EA6;&#x5728;&#x670D;&#x52A1;&#x4E1A;&#x4E2D;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-本书结构框架"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#1-3-&#x672C;&#x4E66;&#x7ED3;&#x6784;&#x6846;&#x67B6;" class="headerlink" title="1.3 &#x672C;&#x4E66;&#x7ED3;&#x6784;&#x6846;&#x67B6;"></a>1.3 &#x672C;&#x4E66;&#x7ED3;&#x6784;&#x6846;&#x67B6;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenyao Lu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
